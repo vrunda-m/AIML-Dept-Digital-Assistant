@@ -59,7 +59,7 @@
 
 # **Getting Started**
 
-1. # Backend
+1. # Backend Setup
 
 # cd backend
 
