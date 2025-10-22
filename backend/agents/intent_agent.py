@@ -1,11 +1,16 @@
-from llm_instance import LLMInstance
+# backend/agents/intent_agent.py
 
+def get_intent(query: str):
+    query = query.lower()
 
-class IntentAgent:
-def __init__(self):
-self.llm = LLMInstance()
+    if "student" in query or "usn" in query or "batch" in query:
+        return "students"
 
+    elif "mark" in query or "score" in query:
+        return "marks"
 
-def detect_intent(self, query):
-prompt = f"Identify intent of this academic query: {query}"
-return self.llm.generate(prompt)
+    elif "subject" in query or "semester" in query:
+        return "subjects"
+
+    else:
+        return "unknown"
