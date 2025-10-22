@@ -30,25 +30,25 @@
 
 1. IntentAgent → detect query type.
    
-   ===
+   
 2. TableAgent → fetch results from DB.
    
-   ===
+   
 3. ColumnPruningAgent → optimize SQL queries.
    
-   ===
+   
 4. RetrieverAgent → fetch context from knowledge base.
    
-   ===
+   
 5. QueryGeneratorAgent → convert natural language queries to SQL.
    
-   ===
+   
 6. SQLValidatorAgent → validate queries.
    
-   ===
+   
 7. SynthesisAgent → format output for frontend.
    
-   ===
+   
 8. # AuditFeedbackAgent → log queries for improvement.
 
 # 
