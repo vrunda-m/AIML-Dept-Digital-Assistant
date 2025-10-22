@@ -1,0 +1,65 @@
+2025-10-22T19:36:06 | QUERY: Show my 3rd sem results | RESPONSE_SUMMARY: 🎓 Semester Results
+
+• AI: 85
+• DBMS: 90
+• Python: 88
+
+📊 Average: 87.67
+2025-10-22T19:36:06 | QUERY: Show my timetable | RESPONSE_SUMMARY: 📅 Weekly Timetable
+
+Monday: AI (10:00 AM - 11:00 AM)
+Tuesday: DBMS (9:00 AM - 10:00 AM)
+2025-10-22T19:36:06 | QUERY: Give me placements from batch 2020 | RESPONSE_SUMMARY: 🏢 Placements
+
+1DS22AI007 -> Infosys (6 LPA)
+1DS22AI019 -> TCS (5 LPA)
+2025-10-22T19:36:54 | QUERY: Show my 3rd sem results | RESPONSE_SUMMARY: 🎓 Semester Results
+
+• AI: 85
+• DBMS: 90
+• Python: 88
+
+📊 Average: 87.67
+2025-10-22T19:36:54 | QUERY: Show my timetable | RESPONSE_SUMMARY: 📅 Weekly Timetable
+
+Monday: AI (10:00 AM - 11:00 AM)
+Tuesday: DBMS (9:00 AM - 10:00 AM)
+2025-10-22T19:36:54 | QUERY: Give me placements from batch 2020 | RESPONSE_SUMMARY: 🏢 Placements
+
+1DS22AI007 -> Infosys (6 LPA)
+1DS22AI019 -> TCS (5 LPA)
+2025-10-22T19:55:36 | QUERY: Show my 3rd sem results | RESPONSE: 🎓 Semester Results
+
+• AI: 85
+• DBMS: 90
+• Python: 88
+
+📊 Average: 87.67
+2025-10-22T19:55:36 | QUERY: Show my timetable | RESPONSE: 📅 Weekly Timetable
+
+Monday: AI (10:00 AM - 11:00 AM)
+Tuesday: DBMS (9:00 AM - 10:00 AM)
+Wednesday: DAA (9:00 AM - 10:00 AM)
+Thursday: ML (9:00 AM - 10:00 AM)
+Friday: GEN AI (9:00 AM - 10:00 AM)
+2025-10-22T19:55:36 | QUERY: Give me placements from batch 2020 | RESPONSE: 🏢 Placements
+
+1DS22AI007 → Infosys (6 LPA)
+1DS22AI019 → TCS (5 LPA)
+2025-10-22T19:55:36 | QUERY: List internships | RESPONSE: 💼 Internships
+
+1DS23AI400 → Zoho (ML Intern)
+1DS23AI401 → Google (ML Intern)
+1DS23AI402 → Paypal (CS Intern)
+1DS23AI403 → Zoho (AI Intern)
+1DS23AI405 → Zoho (ML Intern)
+2025-10-22T19:55:36 | QUERY: Show student publications | RESPONSE: title: AI in Education | venue: IEEE | year: 2024
+title: AI in Military | venue: IEEE | year: 2022
+title: AI in Aerospace | venue: IEEE | year: 2022
+title: AI in Industries | venue: IEEE | year: 2023
+
+2025-10-22T19:55:36 | QUERY: Show faculty list | RESPONSE: name: Dr. Vindhya P Malagi | designation: HOD | department: AI & ML
+name: Prof. Kavya | designation: Assistant Professor | department: AI & ML
+name: Prof. Ramya | designation: Assistant Professor | de
+2025-10-22T19:55:36 | QUERY: Show curriculum scheme & syllabus | RESPONSE: [DummyLLM-Phase1] Generated response for prompt: Summarize: Context: general academic information. - {}
+2025-10-22T19:55:36 | QUERY: List hackathons | RESPONSE: [DummyLLM-Phase1] Generated response for prompt: Summarize: Context: general academic information. - {}
