@@ -81,7 +81,10 @@
 
 # npm start  # launch React app
 
-# 
+# To test Agents
+* RUN THE FOLLOWING COMMANDS
+1. cd FRONTEND
+2. python main.py
 
 # *Notes:*
 
