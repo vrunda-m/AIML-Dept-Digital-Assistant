@@ -1,8 +1,0 @@
-# Ignore Python, Node, data and OS files 
-__pycache__/ 
-*.pyc 
-env/ 
-venv/ 
-node_modules/ 
-data/*.json 
-.DS_Store 
