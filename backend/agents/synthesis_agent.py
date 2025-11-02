@@ -1,9 +1,7 @@
-from llm_instance import LLMInstance
-
 class SynthesisAgent:
-    def __init__(self):
-        self.llm = LLMInstance()
-
-    def format_response(self, data):
-        prompt = f"Generate a readable result summary:\n{data}"
-        return self.llm.generate(prompt)
+    def synthesize_response(self, intent, result):
+        if intent == "result_query":
+            return f"Here are your marks: {result}"
+        elif intent == "timetable_query":
+            return f"Your timetable details: {result}"
+        return "I'm not sure how to respond yet."
