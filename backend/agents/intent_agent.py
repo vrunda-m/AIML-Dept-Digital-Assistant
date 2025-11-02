@@ -1,16 +1,56 @@
-# backend/agents/intent_agent.py
+from llm_instance import get_llm
 
-def get_intent(query: str):
-    query = query.lower()
+class IntentAgent:
+    def __init__(self):
+        self.llm = get_llm()
 
-    if "student" in query or "usn" in query or "batch" in query:
-        return "students"
+    def identify_intent(self, query: str) -> str:
+        q = query.lower()
+        if "result" in q or "marks" in q:
+            return "Result"
+        if "timetable" in q or "schedule" in q or "class" in q:
+            return "Timetable"
+        if "placement" in q:
+            return "Placements"
+        if "internship" in q:
+            return "Internships"
+        if "project" in q:
+            return "Projects"
+        if "publication" in q:
+            return "Publications"
+        if "faculty" in q:
+            return "Faculty"
+        return "Unknown"
 
-    elif "mark" in query or "score" in query:
-        return "marks"
+ 
+ 
+ 
+ 
+ 
 
-    elif "subject" in query or "semester" in query:
-        return "subjects"
+ 
+ 
+ 
+ 
+ 
+ 
 
-    else:
-        return "unknown"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
