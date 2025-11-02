@@ -1,56 +1,13 @@
-from llm_instance import get_llm
+from ..llm_instance import LLMInstance
 
 class IntentAgent:
     def __init__(self):
-        self.llm = get_llm()
+        self.llm = LLMInstance.get_instance()
 
-    def identify_intent(self, query: str) -> str:
-        q = query.lower()
-        if "result" in q or "marks" in q:
-            return "Result"
-        if "timetable" in q or "schedule" in q or "class" in q:
-            return "Timetable"
-        if "placement" in q:
-            return "Placements"
-        if "internship" in q:
-            return "Internships"
-        if "project" in q:
-            return "Projects"
-        if "publication" in q:
-            return "Publications"
-        if "faculty" in q:
-            return "Faculty"
-        return "Unknown"
-
- 
- 
- 
- 
- 
-
- 
- 
- 
- 
- 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    def detect_intent(self, query: str):
+        if "timetable" in query.lower():
+            return "timetable_query"
+        elif "result" in query.lower() or "marks" in query.lower():
+            return "result_query"
+        else:
+            return "general_query"
