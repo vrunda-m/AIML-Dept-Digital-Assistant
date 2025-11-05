@@ -17,3 +17,9 @@ BACKEND/
 # Ignore logs or temporary files
 *.log
 *.tmp
+
+# Ignore Python virtual env
+.venv/
+venv/
+__pycache__/
+*.pyc
