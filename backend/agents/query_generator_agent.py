@@ -1,13 +1,12 @@
-from ..llm_instance import LLMInstance
+# backend/agents/query_generator_agent.py
+from crewai import Agent
+from backend.core.llm_config import get_llm
 
-class QueryGeneratorAgent:
-    def __init__(self):
-        self.llm = LLMInstance.get_instance()
-
-    def generate_sql(self, intent, query):
-        if intent == "result_query":
-            return "SELECT * FROM marks WHERE student_id = ?"
-        elif intent == "timetable_query":
-            return "SELECT * FROM timetable WHERE semester = ?"
-        else:
-            return None
+query_gen_agent = Agent(
+    role="Query Generator",
+    goal="Convert natural language user requests into SQL SELECT statements, using schema context from the Table Agent and intent JSON from the Intent Agent.",
+    backstory="Transforms natural language into SQL queries for structured data retrieval.",
+    llm=get_llm(),
+    memory=False,
+    verbose=True
+)

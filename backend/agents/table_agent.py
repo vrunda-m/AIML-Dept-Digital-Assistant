@@ -1,13 +1,14 @@
-import sqlite3
+# backend/agents/table_agent.py
+from crewai import Agent
+from backend.core.llm_config import get_llm
+from backend.tools.db_tools import run_sql
 
-class TableAgent:
-    def __init__(self, db_path="academic.db"):
-        self.conn = sqlite3.connect(db_path, check_same_thread=False)
-        self.cursor = self.conn.cursor()
-
-    def execute(self, sql, params=()):
-        try:
-            self.cursor.execute(sql, params)
-            return self.cursor.fetchall()
-        except Exception as e:
-            return f"Error: {e}"
+table_agent = Agent(
+    role="Database Schema Expert",
+    goal="Understand and expose the structure of the academic database (tables: students, courses, results, timetables). Provide schema summaries and help others craft valid SQL queries.",
+    backstory="Knows every table, column, and relationship in the departmental database.",
+    llm=get_llm(),
+    tools=[run_sql],
+    memory=True,
+    verbose=True
+)
