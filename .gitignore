@@ -10,9 +10,6 @@ node_modules/
 build/
 dist/
 
-# Ignore uppercase duplicate folders
-FRONTEND/
-BACKEND/
 
 # Ignore logs or temporary files
 *.log
