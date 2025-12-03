@@ -1,0 +1,25 @@
+# Ignore OS/system files
+.DS_Store
+Thumbs.db
+
+# Ignore virtual environments and node modules across repo
+env/
+node_modules/
+
+# Ignore build or dist folders
+build/
+dist/
+
+# Ignore uppercase duplicate folders
+FRONTEND/
+BACKEND/
+
+# Ignore logs or temporary files
+*.log
+*.tmp
+
+# Ignore Python virtual env
+.venv/
+venv/
+__pycache__/
+*.pyc
