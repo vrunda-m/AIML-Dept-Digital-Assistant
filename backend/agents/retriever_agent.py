@@ -1,7 +1,7 @@
 from crewai import Agent
-from core.llm_config import get_llm
-from tools.db_tools import run_sql
-from tools.rag_tools import rag_query
+from backend.core.llm_config import get_llm
+from backend.tools.db_tools import run_sql
+from backend.tools.rag_tools import rag_query
 
 retriever_agent = Agent(
     role="Retriever",

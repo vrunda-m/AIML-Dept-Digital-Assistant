@@ -1,6 +1,6 @@
 # backend/agents/query_generator_agent.py
 from crewai import Agent
-from core.llm_config import get_llm
+from backend.core.llm_config import get_llm
 
 query_gen_agent = Agent(
     role="Query Generator",

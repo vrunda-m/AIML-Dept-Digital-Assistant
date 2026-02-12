@@ -1,6 +1,6 @@
 # backend/agents/synthesis_agent.py
 from crewai import Agent
-from core.llm_config import get_llm
+from backend.core.llm_config import get_llm
 
 synthesis_agent = Agent(
     role="Response Synthesizer",

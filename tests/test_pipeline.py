@@ -1,5 +1,6 @@
 # backend/test_pipeline.py
-from core.crew_router import run_pipeline
+from backend.core.crew_router import run_pipeline
+
 
 if __name__ == "__main__":
     query = "Show my 3rd year results for USN 1RV23CS001"

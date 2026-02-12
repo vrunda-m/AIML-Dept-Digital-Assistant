@@ -1,6 +1,7 @@
 # backend/agents/intent_agent.py
 from crewai import Agent
-from core.llm_config import get_llm
+from backend.core.llm_config import get_llm
+
 
 intent_agent = Agent(
     role="Intent Classifier",

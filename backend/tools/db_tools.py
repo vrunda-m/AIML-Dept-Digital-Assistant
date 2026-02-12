@@ -1,7 +1,7 @@
 # backend/tools/db_tools.py
 from sqlalchemy import create_engine, text
 from dotenv import load_dotenv
-from tools.tool_shim import tool
+from backend.tools.tool_shim import tool
 import os
 
 load_dotenv()

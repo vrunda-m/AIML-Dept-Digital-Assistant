@@ -1,6 +1,6 @@
 from crewai import Agent
-from core.llm_config import get_llm
-from tools.audit_tools import log_event
+from backend.core.llm_config import get_llm
+from backend.tools.audit_tools import log_event
 
 audit_agent = Agent(
     role="Audit & Feedback Agent",

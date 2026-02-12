@@ -1,6 +1,6 @@
 # backend/agents/sql_validator_agent.py
 from crewai import Agent
-from core.llm_config import get_llm
+from backend.core.llm_config import get_llm
 
 sql_validator_agent = Agent(
     role="SQL Validator",

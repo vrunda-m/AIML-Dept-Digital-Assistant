@@ -1,5 +1,5 @@
 # backend/tools/rag_tools.py
-from tools.tool_shim import tool
+from backend.tools.tool_shim import tool
 from sentence_transformers import SentenceTransformer
 import chromadb, os
 from chromadb.config import Settings
