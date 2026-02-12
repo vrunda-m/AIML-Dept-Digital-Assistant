@@ -1,12 +1,13 @@
 # backend/core/crew_router.py
 from crewai import Crew, Process, Task
-from agents.intent_agent import intent_agent
-from agents.table_agent import table_agent
-from agents.query_generator_agent import query_gen_agent
-from agents.sql_validator_agent import sql_validator_agent
-from agents.retriever_agent import retriever_agent
-from agents.synthesis_agent import synthesis_agent
-from agents.audit_feedback_agent import audit_agent
+from backend.agents.intent_agent import intent_agent
+from backend.agents.table_agent import table_agent
+from backend.agents.query_generator_agent import query_gen_agent
+from backend.agents.sql_validator_agent import sql_validator_agent
+from backend.agents.retriever_agent import retriever_agent
+from backend.agents.synthesis_agent import synthesis_agent
+from backend.agents.audit_feedback_agent import audit_agent
+
 
 def build_pipeline_tasks():
     """

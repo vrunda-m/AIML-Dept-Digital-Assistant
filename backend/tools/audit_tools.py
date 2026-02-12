@@ -1,6 +1,12 @@
 # backend/tools/audit_tools.py
-from tools.tool_shim import tool
-import time, json, os
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parents[2]
+AUDIT_DIR = BASE_DIR / "data" / "audit"
+AUDIT_DIR.mkdir(parents=True, exist_ok=True)
+
+LOG_FILE = AUDIT_DIR / "events.json"
+
 
 os.makedirs("./backend/data/audit", exist_ok=True)
 LOG_FILE = "./backend/data/audit/events.jsonl"
