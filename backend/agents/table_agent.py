@@ -1,6 +1,6 @@
 from crewai import Agent
-from core.llm_config import get_llm
-from tools.db_tools import run_sql  # ← wrapped by @tool
+from backend.core.llm_config import get_llm
+from backend.tools.db_tools import run_sql  # ← wrapped by @tool
 
 table_agent = Agent(
     role="Database Schema Expert",
