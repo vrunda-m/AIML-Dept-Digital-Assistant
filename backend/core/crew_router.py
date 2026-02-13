@@ -1,5 +1,7 @@
 # backend/core/crew_router.py
+
 from crewai import Crew, Process, Task
+
 from backend.agents.intent_agent import intent_agent
 from backend.agents.table_agent import table_agent
 from backend.agents.query_generator_agent import query_gen_agent
@@ -11,11 +13,15 @@ from backend.agents.audit_feedback_agent import audit_agent
 
 def build_pipeline_tasks():
     """
-    Build an explicit sequential task list: each Task is assigned to one agent.
-    Crew in Process.sequential will run these in order.
+    Build explicit sequential task list.
+    IMPORTANT:
+    - Audit runs BEFORE synthesis
+    - Synthesis is LAST so Crew returns human-readable answer
     """
+
     tasks = []
 
+    # 1️⃣ Intent
     tasks.append(
         Task(
             description="Intent classification: determine intent and extract entities from the user query.",
@@ -24,22 +30,25 @@ def build_pipeline_tasks():
         )
     )
 
+    # 2️⃣ Schema
     tasks.append(
         Task(
             description="Schema/table agent: expose DB schema or confirm which tables to query.",
-            expected_output="{'tables': [...], 'schema_hint': '...'}",
+            expected_output="{'table': 'students', 'columns': [...]}",
             agent=table_agent
         )
     )
 
+    # 3️⃣ SQL Generation
     tasks.append(
         Task(
-            description="Query generator: translate intent+entities into a SQL query or DB action.",
+            description="Query generator: translate intent+entities into a SQL query.",
             expected_output="{'sql': 'SELECT ...'}",
             agent=query_gen_agent
         )
     )
 
+    # 4️⃣ SQL Validation
     tasks.append(
         Task(
             description="SQL validator: verify SQL safety and correctness.",
@@ -48,34 +57,41 @@ def build_pipeline_tasks():
         )
     )
 
+    # 5️⃣ Retrieval
     tasks.append(
         Task(
-            description="Retriever: run the validated SQL and/or perform RAG retrieval for documents.",
+            description="Retriever: execute SQL or perform RAG retrieval if needed.",
             expected_output="{'rows': [...], 'passages': [...]}",
             agent=retriever_agent
         )
     )
 
+    # 6️⃣ Audit (moved BEFORE synthesis)
     tasks.append(
         Task(
-            description="Synthesis: create the final human-readable response using structured + retrieved context.",
-            expected_output="{'response_text': '...'}",
-            agent=synthesis_agent
-        )
-    )
-
-    tasks.append(
-        Task(
-            description="Audit & Feedback: log the full interaction and collect feedback if available.",
+            description="Audit & Feedback: log the interaction.",
             expected_output="{'logged': True}",
             agent=audit_agent
         )
     )
 
+    # 7️⃣ Synthesis (FINAL TASK → returned to user)
+    tasks.append(
+        Task(
+            description="Synthesis: create final human-readable academic response.",
+            expected_output="{'response_text': '...'}",
+            agent=synthesis_agent
+        )
+    )
+
     return tasks
 
+
 def build_pipeline():
-    """Build the full sequential multi-agent crew with explicit tasks."""
+    """
+    Build sequential multi-agent crew.
+    """
+
     tasks = build_pipeline_tasks()
 
     crew = Crew(
@@ -85,21 +101,25 @@ def build_pipeline():
             query_gen_agent,
             sql_validator_agent,
             retriever_agent,
-            synthesis_agent,
-            audit_agent
+            audit_agent,        # audit still included
+            synthesis_agent     # synthesis last
         ],
         tasks=tasks,
         process=Process.sequential,
         verbose=True
     )
+
     return crew
+
 
 def run_pipeline(query: str):
     """
     Executes a single query through the crew.
-    Provide the user's query as the kickoff input; each Task will see the inputs and previous outputs.
+    Returns final synthesis output.
     """
+
     crew = build_pipeline()
-    # kickoff expects a mapping of input variables; we pass the original query
+
     result = crew.kickoff(inputs={"query": query})
+
     return result
