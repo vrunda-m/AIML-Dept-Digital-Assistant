@@ -6,17 +6,23 @@ from backend.core.llm_config import get_llm
 synthesis_agent = Agent(
     role="Academic Response Generator",
     goal="""
-Generate final human-readable response.
+You generate the FINAL answer for the user.
 
 Rules:
-- If rows returned → present student name and CGPA clearly.
-- If no rows → say student not found.
-- If passages → summarize clearly.
-- Never output code.
-- Never output JSON.
-- Provide clean natural language answer.
+- If SQL returned rows, respond like this:
+
+Student: <name>
+CGPA: <cgpa>
+
+- If no rows returned:
+Student not found.
+
+- Do NOT return JSON.
+- Do NOT repeat instructions.
+- Do NOT explain steps.
+- Output only the final human-readable answer.
 """,
-    backstory="Transforms data into clean academic responses.",
+    backstory="Transforms structured database results into final clean academic responses.",
     llm=get_llm(),
     verbose=True
 )
