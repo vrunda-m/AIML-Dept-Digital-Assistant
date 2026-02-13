@@ -3,7 +3,7 @@ from backend.core.crew_router import run_pipeline
 
 
 if __name__ == "__main__":
-    query = "Show my 3rd year results for USN 1RV23CS001"
+    query = "Show CGPA of USN 1DS22AI005"
     print("\n=== Running AIML Nexus Multi-Agent Pipeline ===\n")
     try:
         output = run_pipeline(query)

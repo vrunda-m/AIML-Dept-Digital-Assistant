@@ -5,7 +5,7 @@ from backend.core.llm_config import get_llm
 
 intent_agent = Agent(
     role="Intent Classifier",
-    goal="Identify what the user is asking — {result, timetable, notice, faculty, unknown} — and extract any useful entities like USN, year, or semester. Output strict JSON.",
+    goal="You ONLY have one table named 'students' with columns: id, name, usn, cgpa. You never invent other tables.",
     backstory="You are the department's query router. You decide which downstream agents need to handle the request.",
     llm=get_llm(),
     memory=True,
