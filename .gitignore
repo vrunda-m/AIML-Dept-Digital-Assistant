@@ -1,24 +1,42 @@
-# Ignore OS/system files
+# -----------------------------
+# OS / System Files
+# -----------------------------
 .DS_Store
 Thumbs.db
 
-# Ignore virtual environments and node modules across repo
-env/
-node_modules/
-
-# Ignore build or dist folders
-build/
-dist/
-
-
-# Ignore logs or temporary files
-*.log
-*.tmp
-
-# Ignore Python virtual env
+# -----------------------------
+# Python
+# -----------------------------
 .venv/
 venv/
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 
+# -----------------------------
+# Environment Variables
+# -----------------------------
+.env
+
+# -----------------------------
+# Node / Frontend
+# -----------------------------
+node_modules/
+
+# -----------------------------
+# Build / Distribution
+# -----------------------------
+build/
+dist/
+
+# -----------------------------
+# Logs / Temp
+# -----------------------------
+*.log
+*.tmp
+
+# -----------------------------
+# Runtime Data (Database + RAG)
+# -----------------------------
 data/

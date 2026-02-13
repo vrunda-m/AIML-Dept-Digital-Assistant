@@ -79,8 +79,9 @@ def build_pipeline_tasks():
     tasks.append(
     Task(
         description="Synthesis: produce final answer for the user.",
-        agent=synthesis_agent
-         )
+        agent=synthesis_agent,
+        expected_output="A final human-readable academic response.",
+        )
     )
 
 
