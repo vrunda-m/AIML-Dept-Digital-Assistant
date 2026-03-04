@@ -1,62 +1,45 @@
 # backend/core/llm_config.py
 
-import os
-from dotenv import load_dotenv
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+import torch
 
-load_dotenv()
+_MODEL = None
+_TOKENIZER = None
 
-# --------------------------------------------------------
-# SINGLETON LLM INSTANCE
-# --------------------------------------------------------
+
+class LocalHFLLM:
+    def __init__(self, model_name="google/flan-t5-base"):
+        global _MODEL, _TOKENIZER
+
+        if _MODEL is None:
+            print(f"[DEBUG] Loading HuggingFace model → {model_name}")
+            _TOKENIZER = AutoTokenizer.from_pretrained(model_name)
+            _MODEL = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+
+        self.model = _MODEL
+        self.tokenizer = _TOKENIZER
+
+    def generate(self, prompt, **kwargs):
+        inputs = self.tokenizer(prompt, return_tensors="pt", truncation=True)
+
+        with torch.no_grad():
+            outputs = self.model.generate(
+                **inputs,
+                max_new_tokens=256,
+                temperature=0.0
+            )
+
+        text = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+        return {"text": text}
+
+
 _LLM_INSTANCE = None
 
 
 def get_llm():
-    """
-    Returns ONE shared LLM instance for all agents.
-    Works with:
-    - OpenAI API (gpt-4o-mini)
-    - Ollama (tinyllama, phi3:mini)
-    Deterministic output via temperature=0.
-    """
-
     global _LLM_INSTANCE
 
-    if _LLM_INSTANCE is not None:
-        return _LLM_INSTANCE
-
-    # -------------------------------------------
-    # Optional dummy mode (for testing)
-    # -------------------------------------------
-    USE_DUMMY = os.getenv("USE_DUMMY_LLM", "0") == "1"
-    if USE_DUMMY:
-        class DummyLLM:
-            def generate(self, prompt, **kwargs):
-                return {"text": "DUMMY OUTPUT — LLM disabled."}
-
-        print("[DEBUG] Using Dummy LLM")
-        _LLM_INSTANCE = DummyLLM()
-        return _LLM_INSTANCE
-
-    # -------------------------------------------
-    # Real LLM (OpenAI or Ollama)
-    # -------------------------------------------
-    from crewai import LLM
-
-    model = os.getenv("LLM_MODEL")
-    base_url = os.getenv("LLM_BASE_URL")
-    api_key = os.getenv("LLM_API_KEY")
-
-    if not model or not base_url or not api_key:
-        raise ValueError("LLM configuration missing in .env file.")
-
-    print(f"[DEBUG] Creating SINGLE shared LLM instance → {model}")
-
-    _LLM_INSTANCE = LLM(
-        model=model,
-        base_url=base_url,
-        api_key=api_key,
-        temperature=0  # deterministic behavior
-    )
+    if _LLM_INSTANCE is None:
+        _LLM_INSTANCE = LocalHFLLM()
 
     return _LLM_INSTANCE
